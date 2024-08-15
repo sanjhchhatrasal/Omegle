@@ -64,6 +64,22 @@
             background-color: rgb(255, 80, 80, 1);
         }
 
+        #message-container::-webkit-scrollbar{
+            display: none;
+        }
+
+        #message-container p {
+            background-color: #ECFFE6;
+            padding: 6px;
+            margin-top: 10px;
+            width: fit-content;
+            border-radius: 10px;
+        }
+        #message-container p.self {
+            align-self: flex-end;
+            background-color:#CBD5E1;
+        }
+
         @media screen and (max-width: 600px) {
             .smallFrame {
                 height: 80px;
@@ -123,11 +139,10 @@
                 <button id="reject-call" class="bg-red-500 text-white py-2 px-4 rounded-md ml-2">Reject</button>
             </div>
         </div>
-        <main class="flex-1 p-4 overflow-y-auto relative" id="message-container">
+        <main class="flex flex-col h-[79%] text-lg font-semibold p-4 overflow-y-auto relative overflow-hidden" id="message-container">
             <div
                 class="text-zinc-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 text-center nobody">
-                bhagwaan kasam koi nahi hai yaha, ruko shaayad koi
-                aajaye.</div>
+                No One is connected yet.</div>
         </main>
         <form id="chatform" class="bg-white p-4 flex">
             <input type="hidden" id="userid" value="">
@@ -143,6 +158,7 @@
         <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
             integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
             crossorigin="anonymous"></script>
+            <script src="/javascripts/script.js"></script>
     </div>
 </body>
 </html>
