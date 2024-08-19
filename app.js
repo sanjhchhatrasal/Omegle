@@ -24,8 +24,7 @@ io.on("connection", function(socket){
        }
 
        socket.on("message", function(data){
-        io.emit("recieve-message", {id: socket.id, data: data});
-        console.log(data)
+         io.emit("recieve-message", {id: socket.id, text: data.message});
        })
 
 

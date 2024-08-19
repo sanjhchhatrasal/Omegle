@@ -24,6 +24,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: none;
         }
 
         .smallFrame {
@@ -71,13 +72,22 @@
         #message-container p {
             background-color: #ECFFE6;
             padding: 6px;
+            padding: 6px 10px;
             margin-top: 10px;
             width: fit-content;
-            border-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            margin-right: 10vw;
         }
         #message-container p.self {
             align-self: flex-end;
             background-color:#CBD5E1;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            margin-right: 0vw;
+            margin-left: 10vw;
         }
 
         @media screen and (max-width: 600px) {
@@ -100,7 +110,7 @@
             <button id="video-call-btn" class="bg-gradient-to-r from-[#2E236C] to-[#17153B] text-white py-2 px-4 rounded-md hover:bg-blue-600">Video
                 Call</button>
         </header>
-        <div class="fixed videoblock hidden z-[222] w-full h-svh">
+        <div class=" fixed videoblock hidden z-[222] w-full h-svh">
             <div id="videos">
                 <video class="video-player" id="localVideo" autoplay muted playsinline></video>
                 <video class="video-player" id="remoteVideo" autoplay playsinline></video>
