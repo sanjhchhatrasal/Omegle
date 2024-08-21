@@ -21,18 +21,37 @@ io.on("connection", function(socket){
             io.to(roomname).emit("joined", roomname)
        } else{
         waitingUsers.push(socket)
-       }
+       }  
+    });
 
-       socket.on("message", function(data){
-         io.emit("recieve-message", {id: socket.id, text: data.message});
+          
+    socket.on("signalingMessage", function(data){
+        socket.broadcast.to(data.room).emit("signalingMessage", data.message)
        })
 
 
-       socket.on("diconnect", function(){
-        let index = waitingUsers.indexOf((waitingUsers) => waitingUsers.id === socket.id);
-        waitingUsers.splice(index, 1)
-       })
-    })
+    socket.on("message", function(data){
+        io.emit("recieve-message", {id: socket.id, text: data.message});
+      });
+
+      socket.on("startVideoCall", function({room}){
+        console.log({room})
+        socket.broadcast.to(room).emit("incomingCall")
+      });
+
+      socket.on("acceptCall", function({room}){
+        socket.broadcast.to(room).emit("callAccepted")
+      });
+
+      socket.on("rejectCall", function({room}){
+        socket.broadcast.to(room).emit("callRejected");
+      })
+
+
+      socket.on("diconnect", function(){
+       let index = waitingUsers.indexOf((waitingUsers) => waitingUsers.id === socket.id);
+       waitingUsers.splice(index, 1)
+      })
 
 })
 
