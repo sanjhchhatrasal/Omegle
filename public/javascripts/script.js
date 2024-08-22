@@ -201,4 +201,38 @@ function hangup(){
   }
 }
 
+let isCameraOn = true; 
+let isMicOn = true; 
+
+// Toggle Camera
+document.querySelector("#cameraButton").addEventListener("click", function () {
+  if (local) {
+    local.getVideoTracks().forEach((track) => {
+      track.enabled = !track.enabled;
+      isCameraOn = track.enabled; 
+    });
+    if (isCameraOn) {
+      document.querySelector("#cameraButton svg path").setAttribute("fill", "white");
+    } else {
+      document.querySelector("#cameraButton svg path").setAttribute("fill", "gray");
+    }
+  }
+});
+
+// Toggle Mic
+document.querySelector("#micButton").addEventListener("click", function () {
+  if (local) {
+    local.getAudioTracks().forEach((track) => {
+      track.enabled = !track.enabled;
+      isMicOn = track.enabled; 
+    });
+    if (isMicOn) {
+      document.querySelector("#micButton svg path").setAttribute("fill", "white");
+    } else {
+      document.querySelector("#micButton svg path").setAttribute("fill", "gray");
+    }
+  }
+});
+
+
 
